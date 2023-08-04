@@ -15,33 +15,28 @@ import {
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductsService } from './products.service';
 // import { Request, Response } from 'express';
 
 @Controller('products')
 export class ProductsController {
+  constructor(private readonly productsService: ProductsService) {}
+
   @Get()
-  // @Redirect('https://google.com', 301)
   getAll() {
-    return 'getAll';
+    return this.productsService.getAll();
   }
 
-  // @Get()
-  // // @Redirect('https://google.com', 301)
-  // getAll(@Req req: Request, @Res res: Response) {
-  //   res.status(201).end('Bye');
-  //   return 'getAll';
-  // }
-
   @Get(':id')
-  getOne(@Param('id') id: string): string {
-    return 'getOne ' + id;
+  getOne(@Param('id') id: string) {
+    return this.productsService.getById(id);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @Header('Cache-Control', 'none')
-  create(@Body() createProductDto: CreateProductDto): string {
-    return `Title: ${createProductDto.title}, Price: ${createProductDto.price}`;
+  create(@Body() createProductDto: CreateProductDto) {
+    return this.productsService.create(createProductDto);
   }
 
   @Delete(':id')
