@@ -23,8 +23,8 @@ export class ProductsController {
   }
 
   @Post()
-  create(@Body() CreateProductDto: CreateProductDto): string {
-    return `Title: ${CreateProductDto.title}, Price: ${CreateProductDto.price}`;
+  create(@Body() createProductDto: CreateProductDto): string {
+    return `Title: ${createProductDto.title}, Price: ${createProductDto.price}`;
   }
 
   @Delete(':id')
