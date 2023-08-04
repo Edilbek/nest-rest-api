@@ -45,6 +45,14 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Connect MondoDB
+
+```bash
+cp .env.example .env
+```
+
+REPLACE DB_URI with a read database URI
+
 ## Test
 
 ```bash
